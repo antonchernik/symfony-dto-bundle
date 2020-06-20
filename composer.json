@@ -1,7 +1,7 @@
 {
   "name": "antonchernik/dto-bundle",
   "type": "library",
-  "description": "Symfony mapper bundle, easy way to convert data.",
+  "description": "Symfony DTO bundle for simplifying work with DTO. Based on AutoMapper+",
   "license": "MIT",
   "require": {
     "php": "^7.2",
@@ -13,8 +13,5 @@
   },
   "autoload": {
     "psr-4": { "DTOBundle\\": "src/" }
-  },
-  "autoload-dev": {
-    "psr-4": { "Tests\\": "tests/" }
   }
 }
