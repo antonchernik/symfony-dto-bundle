@@ -6,7 +6,7 @@ namespace DTOBundle\Mapper;
 
 use AutoMapperPlus\DataType;
 use AutoMapperPlus\MappingOperation\Operation;
-use Symfony\Component\PropertyInfo\PropertyInfoExtractor;
+use Symfony\Component\PropertyInfo\PropertyInfoExtractorInterface;
 use Symfony\Component\PropertyInfo\Type;
 use AutoMapperPlus\AutoMapperInterface;
 use AutoMapperPlus\Configuration\Mapping;
@@ -20,15 +20,15 @@ class Mapper implements MapperInterface
     private $autoMapper;
 
     /**
-     * @var PropertyInfoExtractor
+     * @var PropertyInfoExtractorInterface
      */
     private $extractor;
 
     /**
      * @param AutoMapperInterface   $autoMapper
-     * @param PropertyInfoExtractor $extractor
+     * @param PropertyInfoExtractorInterface $extractor
      */
-    public function __construct(AutoMapperInterface $autoMapper, PropertyInfoExtractor $extractor)
+    public function __construct(AutoMapperInterface $autoMapper, PropertyInfoExtractorInterface $extractor)
     {
         $this->autoMapper = $autoMapper;
         $this->extractor = $extractor;
