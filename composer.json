@@ -4,7 +4,7 @@
   "description": "Symfony DTO bundle for simplifying work with DTO. Based on AutoMapper+",
   "license": "MIT",
   "require": {
-    "php": "^7.2",
+    "php": ">=8.0",
     "symfony/dependency-injection": ">=5.0",
     "symfony/property-info": ">=5.0",
     "mark-gerarts/auto-mapper-plus": ">=1.3",
