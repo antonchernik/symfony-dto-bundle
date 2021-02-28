@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DTOBundle\Mapper;
 
-interface MapperInterface
+interface AutoMapperAwareInterface
 {
     /**
      * @param array|object        $source

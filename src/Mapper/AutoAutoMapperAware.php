@@ -9,10 +9,9 @@ use AutoMapperPlus\MappingOperation\Operation;
 use Symfony\Component\PropertyInfo\PropertyInfoExtractorInterface;
 use Symfony\Component\PropertyInfo\Type;
 use AutoMapperPlus\AutoMapperInterface;
-use AutoMapperPlus\Configuration\Mapping;
 use AutoMapperPlus\Exception\UnregisteredMappingException;
 
-class Mapper implements MapperInterface
+class AutoAutoMapperAware implements AutoMapperAwareInterface
 {
     /**
      * @var AutoMapperInterface
