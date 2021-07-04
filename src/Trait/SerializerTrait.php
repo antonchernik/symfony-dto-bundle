@@ -22,6 +22,7 @@ trait SerializerTrait
     }
 
     /**
+     * @required
      * @param SerializerInterface $serializer
      *
      * @return $this

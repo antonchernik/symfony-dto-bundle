@@ -22,6 +22,7 @@ trait MapperTrait
     }
 
     /**
+     * @required
      * @param AutoMapperAwareInterface $mapper
      *
      * @return self
