@@ -16,12 +16,12 @@ class AutoAutoMapperAware implements AutoMapperAwareInterface
     /**
      * @var AutoMapperInterface
      */
-    private $autoMapper;
+    protected AutoMapperInterface $autoMapper;
 
     /**
      * @var PropertyInfoExtractorInterface
      */
-    private $extractor;
+    protected PropertyInfoExtractorInterface $extractor;
 
     /**
      * @param AutoMapperInterface   $autoMapper
@@ -38,10 +38,11 @@ class AutoAutoMapperAware implements AutoMapperAwareInterface
      * @param array|object|string $destination
      * @param array $context
      *
-     * @return array|mixed|object|null
+     * @return mixed
+     *
      * @throws UnregisteredMappingException
      */
-    public function convert($source, $destination, array $context = [])
+    public function convert($source, $destination, array $context = []): mixed
     {
         $this->autoConfiguration($source, $destination);
         if (is_object($destination)) {
@@ -73,7 +74,7 @@ class AutoAutoMapperAware implements AutoMapperAwareInterface
      * @param array|object $source
      * @param array|object|string $destination
      */
-    private function autoConfiguration($source, $destination): void
+    protected function autoConfiguration($source, $destination): void
     {
         $destination = is_object($destination) ? get_class($destination) : $destination;
         if (!is_array($source) ||
@@ -88,7 +89,7 @@ class AutoAutoMapperAware implements AutoMapperAwareInterface
     /**
      * @param string $destination
      */
-    private function createSchemaForMapping(string $destination): void
+    protected function createSchemaForMapping(string $destination): void
     {
         $config = $this->autoMapper->getConfiguration();
         if (null !== $config->getMappingFor(DataType::ARRAY, $destination)) {
@@ -104,8 +105,8 @@ class AutoAutoMapperAware implements AutoMapperAwareInterface
             }
             $propertyInfo = $types[0];
             $innerClass = false;
-            if ($propertyInfo->getCollectionValueType()) {
-                $innerClass = $propertyInfo->getCollectionValueType()->getClassName();
+            if (!empty($propertyInfo->getCollectionValueTypes()[0])) {
+                $innerClass = $propertyInfo->getCollectionValueTypes()[0]->getClassName();
                 $this->createSchemaForMapping($innerClass);
                 $mapping->forMember($property, Operation::mapTo($innerClass));
             } elseif ($propertyInfo->getBuiltinType() === 'object') {

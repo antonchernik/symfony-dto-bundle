@@ -11,7 +11,7 @@ trait SerializerTrait
     /**
      * @var SerializerInterface
      */
-    protected $serializer;
+    protected SerializerInterface $serializer;
 
     /**
      * @return SerializerInterface

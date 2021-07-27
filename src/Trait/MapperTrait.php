@@ -11,7 +11,7 @@ trait MapperTrait
     /**
      * @var AutoMapperAwareInterface
      */
-    protected $mapper;
+    protected AutoMapperAwareInterface $mapper;
 
     /**
      * @return AutoMapperAwareInterface
