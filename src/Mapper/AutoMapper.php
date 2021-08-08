@@ -11,7 +11,7 @@ use Symfony\Component\PropertyInfo\Type;
 use AutoMapperPlus\AutoMapperInterface;
 use AutoMapperPlus\Exception\UnregisteredMappingException;
 
-class AutoAutoMapperAware implements AutoMapperAwareInterface
+class AutoMapper implements AutoMapperAwareInterface
 {
     public function __construct(
         protected AutoMapperInterface $autoMapper,
