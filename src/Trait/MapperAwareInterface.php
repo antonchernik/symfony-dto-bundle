@@ -9,6 +9,5 @@ use DTOBundle\Mapper\AutoMapperAwareInterface;
 interface MapperAwareInterface
 {
     public function getMapper(): AutoMapperAwareInterface;
-
     public function setMapper(AutoMapperAwareInterface $mapper): self;
 }

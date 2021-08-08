@@ -8,14 +8,8 @@ use DTOBundle\Mapper\AutoMapperAwareInterface;
 
 trait MapperTrait
 {
-    /**
-     * @var AutoMapperAwareInterface
-     */
     protected AutoMapperAwareInterface $mapper;
 
-    /**
-     * @return AutoMapperAwareInterface
-     */
     public function getMapper(): AutoMapperAwareInterface
     {
         return $this->mapper;
@@ -23,9 +17,6 @@ trait MapperTrait
 
     /**
      * @required
-     * @param AutoMapperAwareInterface $mapper
-     *
-     * @return self
      */
     public function setMapper(AutoMapperAwareInterface $mapper): self
     {

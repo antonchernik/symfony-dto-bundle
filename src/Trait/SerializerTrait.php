@@ -8,14 +8,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 trait SerializerTrait
 {
-    /**
-     * @var SerializerInterface
-     */
     protected SerializerInterface $serializer;
 
-    /**
-     * @return SerializerInterface
-     */
     public function getSerializer(): SerializerInterface
     {
         return $this->serializer;
@@ -23,9 +17,6 @@ trait SerializerTrait
 
     /**
      * @required
-     * @param SerializerInterface $serializer
-     *
-     * @return $this
      */
     public function setSerializer(SerializerInterface $serializer): self
     {

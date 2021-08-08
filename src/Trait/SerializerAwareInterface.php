@@ -9,6 +9,5 @@ use Symfony\Component\Serializer\SerializerInterface;
 interface SerializerAwareInterface
 {
     public function getSerializer(): SerializerInterface;
-
     public function setSerializer(SerializerInterface $serializer): self;
 }

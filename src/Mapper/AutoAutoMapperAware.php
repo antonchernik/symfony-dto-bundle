@@ -13,36 +13,15 @@ use AutoMapperPlus\Exception\UnregisteredMappingException;
 
 class AutoAutoMapperAware implements AutoMapperAwareInterface
 {
-    /**
-     * @var AutoMapperInterface
-     */
-    protected AutoMapperInterface $autoMapper;
+    public function __construct(
+        protected AutoMapperInterface $autoMapper,
+        protected PropertyInfoExtractorInterface $extractor
+    ) {}
 
     /**
-     * @var PropertyInfoExtractorInterface
-     */
-    protected PropertyInfoExtractorInterface $extractor;
-
-    /**
-     * @param AutoMapperInterface   $autoMapper
-     * @param PropertyInfoExtractorInterface $extractor
-     */
-    public function __construct(AutoMapperInterface $autoMapper, PropertyInfoExtractorInterface $extractor)
-    {
-        $this->autoMapper = $autoMapper;
-        $this->extractor = $extractor;
-    }
-
-    /**
-     * @param array|object $source
-     * @param array|object|string $destination
-     * @param array $context
-     *
-     * @return mixed
-     *
      * @throws UnregisteredMappingException
      */
-    public function convert($source, $destination, array $context = []): mixed
+    public function convert(array|object $source, array|object|string $destination, array $context = []): mixed
     {
         $this->autoConfiguration($source, $destination);
         if (is_object($destination)) {
@@ -52,29 +31,17 @@ class AutoAutoMapperAware implements AutoMapperAwareInterface
         return $this->autoMapper->map($source, $destination, $context);
     }
 
-    /**
-     * @param iterable $sources
-     * @param string $destination
-     * @param array $context
-     *
-     * @return iterable
-     */
     public function convertCollection(iterable $sources, string $destination, array $context = []): iterable
     {
         if (empty($sources)) {
             return [];
         }
-
         $this->autoConfiguration(end($sources), $destination);
 
         return $this->autoMapper->mapMultiple($sources, $destination, $context);
     }
 
-    /**
-     * @param array|object $source
-     * @param array|object|string $destination
-     */
-    protected function autoConfiguration($source, $destination): void
+    protected function autoConfiguration(array|object $source, array|object|string $destination): void
     {
         $destination = is_object($destination) ? get_class($destination) : $destination;
         if (!is_array($source) ||
