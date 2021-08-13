@@ -67,13 +67,15 @@ class AutoMapper implements AutoMapperAwareInterface
             return;
         }
         foreach ($props as $property) {
-            /** @var Type $propertyInfo */
-            $types = $this->extractor->getTypes($destination, $property);
-            if (!$types) {
+            if (!$types = $this->extractor->getTypes($destination, $property)) {
                 continue;
             }
+            /** @var null|Type $propertyInfo */
             $propertyInfo = $types[0] ?? null;
-            if (!empty($propertyInfo->getCollectionValueTypes()[0]) && $propertyInfo->getCollectionValueTypes()[0]->getClassName()) {
+            if (
+                !empty($propertyInfo->getCollectionValueTypes()[0]) &&
+                $propertyInfo->getCollectionValueTypes()[0]->getClassName()
+            ) {
                 $innerClass = $propertyInfo->getCollectionValueTypes()[0]->getClassName();
                 $this->createSchemaForMapping($innerClass);
                 $mapping->forMember($property, Operation::mapTo($innerClass));
