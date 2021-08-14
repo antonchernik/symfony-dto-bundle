@@ -59,13 +59,11 @@ class AutoMapper implements AutoMapperAwareInterface
     protected function createSchemaForMapping(string $destination): void
     {
         $config = $this->autoMapper->getConfiguration();
-        if (null !== $config->getMappingFor(DataType::ARRAY, $destination)) {
+        $mapping = $config->registerMapping(DataType::ARRAY, $destination);
+        if (null !== $mapping || !$props = $this->extractor->getProperties($destination)) {
             return;
         }
-        $mapping = $config->registerMapping('array', $destination);
-        if (!$props = $this->extractor->getProperties($destination)) {
-            return;
-        }
+
         foreach ($props as $property) {
             if (!$types = $this->extractor->getTypes($destination, $property)) {
                 continue;
